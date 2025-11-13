@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { MessageCircle, X, Mic, Volume2, Send, ChevronDown } from "lucide-react"
+import { Bot, X, Mic, Volume2, Send, ChevronDown } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
@@ -26,11 +26,11 @@ const LANGUAGES = {
 
 const WELCOME_MESSAGES = {
   en: "Hello! I'm your AI farming assistant. Ask me anything about crop health, soil management, irrigation, fertilizer usage, weather patterns, or farming tips. I'm here to help optimize your farm production.",
-  hi: "नमस्ते! मैं आपका AI कृषि सहायक हूं। मुझसे फसल स्वास्थ्य, मिट्टी प्रबंधन, सिंचाई, उर्वरक उपयोग, मौसम के पैटर्न या कृषि सुझाव के बारे में कुछ भी पूछें। मैं आपके खेत का उत्पादन अनुकूलित करने में मदद करने के लिए यहां हूं।",
+  hi: "नमस्ते! मैं आपका AI कृषि सहायक हूं। मुझसे फसल स्वास्थ्य, मिट्टी प्रबंधन, सिंचाई, उर्वरक उपयोग, मौसम के पैटर्न या कृषि सुझाव के बारे में कुछ भी पूछें। मैं आपके खेत का उत्पादन अनुकूलित करने के लिए यहां हूं।",
   ta: "வணக்கம்! நான் உங்கள் AI விவசாய உதவியாளர். பயிர் ஆரோக்கியம், மண் நிர்வாகம், நீர்ப்பாசனம், உரப் பயன்பாடு, காலநிலை முறைகள் அல்லது விவசாய குறிப்புகள் பற்றி எதையும் என்னிடம் கேளுங்கள்.",
   te: "హలో! నేను మీ AI వ్యవసాయ సహాయకుడిని. పంట ఆరోగ్యం, నేల నిర్వహణ, నీటిపాయన, ఎరువుల ఉపయోగం, వాతావరణ నమూనాలు లేదా వ్యవసాయ చిట్కాల గురించి నన్ను ఏదైనా అడగండి.",
   bn: "হ্যালো! আমি আপনার AI কৃষি সহায়ক। ফসলের স্বাস্থ্য, মাটি ব্যবস্থাপনা, সেচ, সার ব্যবহার, আবহাওয়া পরিস্থিতি বা কৃষি টিপস সম্পর্কে আমাকে যে কোনো কিছু জিজ্ঞাসা করুন।",
-  mr: "नमस्कार! मी तुमचा AI कृषी सहाय्यक आहे. पिक स्वास्थ्य, मातीचे व्यवस्थापन, सिंचन, खत वापर, हवामान नमुने किंवा शेतकरी सल्ल्या बद्दल मला कधीही विचारा.",
+  mr: "नमस्कार! मी तुमचा AI कृषी सहाय्यक आहे. पिक स्वास्थ्य, मातीचे निर्वहण, सिंचन, खत वापर, हवा-मान नमुने किंवा शेतकरी सल्ल्या बद्दल मला कधीही विचारा.",
   kn: "ನಮಸ್ಕಾರ! ನಾನು ನಿಮ್ಮ AI ಕೃಷಿ ಸಹಾಯಕ. ಸಸ್ಯ ಆರೋಗ್ಯ, ಮಣ್ಣಿನ ನಿರ್ವಹಣೆ, ನೀರಾವರಿ, ಗೊಬ್ಬರ ಬಳಕೆ, ಹವಾಮಾನ ಮಾದರಿಗಳು ಅಥವಾ ಕೃಷಿ ಸಲಹೆಗಳ ಬಗ್ಗೆ ನನ್ನನ್ನು ಕೇಳಿ.",
   pa: "ਨਮਸਤੇ! ਮੈਂ ਤੁਹਾਡਾ AI ਖੇਤੀ ਸਹਾਇਕ ਹਾਂ। ਪਿਆਜ ਦੀ ਸਿਹਤ, ਮਿੱਟੀ ਦਾ ਪ੍ਰਬੰਧਨ, ਸਿੰਚਾਈ, ਖਾਦ ਦੀ ਵਰਤੋਂ, ਮੌਸਮ ਦੇ ਪੈਟਰਨ ਜਾਂ ਖੇਤੀ ਦੀਆਂ ਸੁਝਾਈਆਂ ਬਾਰੇ ਮੈਨੂੰ ਕੁਝ ਵੀ ਪੁੱਛੋ।",
 }
@@ -164,7 +164,7 @@ export function AdvancedChatbot() {
         className="fixed bottom-6 right-6 p-4 bg-gradient-to-br from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-40 hover:scale-110"
         title="Open Farm AI Assistant"
       >
-        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+        {isOpen ? <X className="w-6 h-6" /> : <Bot className="w-6 h-6" />}
       </button>
 
       {isOpen && (
