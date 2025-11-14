@@ -1,8 +1,8 @@
 "use client"
-
+import { LiveDashboard } from "./live-dashboard"
 import { useState, useEffect } from "react"
 import { Navigation } from "@/components/navigation"
-import { Dashboard } from "@/components/pages/dashboard"
+import Dashboard from "@/components/pages/dashboard";
 import { FarmInsights } from "@/components/pages/farm-insights"
 import { DeviceSettings } from "@/components/pages/device-settings"
 import { Moon, Sun } from "lucide-react"

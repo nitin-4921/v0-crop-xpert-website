@@ -1,15 +1,53 @@
 "use client"
 
+<<<<<<< HEAD
+import { useState } from "react"
+import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Switch } from "@/components/ui/switch"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+import { RefreshCw, Plus, Thermometer, Droplets, Sprout, Wind } from "lucide-react"
+=======
 import type React from "react"
 
 import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Thermometer, Droplets, Leaf, Wind, Plus, RefreshCw, X } from "lucide-react"
+>>>>>>> 8c2689b6c35d2c57687bea2943756f980c7c4044
 
 interface Device {
   id: string
   name: string
+<<<<<<< HEAD
+  type: "temperature" | "humidity" | "soil" | "air"
+  status: "online" | "offline"
+  lastUpdated: string
+  location?: string
+  enabled: boolean
+}
+
+const deviceIcons = {
+  temperature: Thermometer,
+  humidity: Droplets,
+  soil: Sprout,
+  air: Wind,
+}
+
+const deviceTypeLabels = {
+  temperature: "Temperature Sensor",
+  humidity: "Humidity Sensor",
+  soil: "Soil Moisture Sensor",
+  air: "Air Quality Monitor",
+=======
   type: "temperature" | "humidity" | "soil" | "air-quality"
   status: "online" | "offline"
   lastUpdated: string
@@ -29,6 +67,7 @@ const deviceTypeLabels: Record<Device["type"], string> = {
   humidity: "Humidity Sensor",
   soil: "Soil Moisture Sensor",
   "air-quality": "Air Quality Monitor",
+>>>>>>> 8c2689b6c35d2c57687bea2943756f980c7c4044
 }
 
 export function DeviceSettings() {
@@ -39,7 +78,11 @@ export function DeviceSettings() {
       type: "temperature",
       status: "online",
       lastUpdated: "2 mins ago",
+<<<<<<< HEAD
+      location: "Field A",
+=======
       location: "North Field",
+>>>>>>> 8c2689b6c35d2c57687bea2943756f980c7c4044
       enabled: true,
     },
     {
@@ -48,11 +91,110 @@ export function DeviceSettings() {
       type: "soil",
       status: "online",
       lastUpdated: "5 mins ago",
+<<<<<<< HEAD
+      location: "Field B",
+=======
       location: "South Field",
+>>>>>>> 8c2689b6c35d2c57687bea2943756f980c7c4044
       enabled: true,
     },
     {
       id: "3",
+<<<<<<< HEAD
+      name: "Air Quality Monitor",
+      type: "air",
+      status: "offline",
+      lastUpdated: "1 hour ago",
+      location: "Greenhouse",
+      enabled: false,
+    },
+    {
+      id: "4",
+      name: "Humidity Sensor",
+      type: "humidity",
+      status: "online",
+      lastUpdated: "3 mins ago",
+      location: "Field C",
+      enabled: true,
+    },
+  ])
+
+  const [isAddDeviceOpen, setIsAddDeviceOpen] = useState(false)
+  const [newDevice, setNewDevice] = useState({
+    name: "",
+    type: "temperature" as Device["type"],
+    id: "",
+  })
+  const [refreshingDevice, setRefreshingDevice] = useState<string | null>(null)
+
+  const handleToggleDevice = (deviceId: string) => {
+    setDevices((prev) =>
+      prev.map((device) =>
+        device.id === deviceId ? { ...device, enabled: !device.enabled } : device
+      )
+    )
+  }
+
+  const handleRefreshDevice = async (deviceId: string) => {
+    setRefreshingDevice(deviceId)
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    setDevices((prev) =>
+      prev.map((device) =>
+        device.id === deviceId
+          ? {
+              ...device,
+              lastUpdated: "Just now",
+              status: "online",
+            }
+          : device
+      )
+    )
+    setRefreshingDevice(null)
+  }
+
+  const handleAddDevice = () => {
+    if (!newDevice.name || !newDevice.id) return
+
+    const device: Device = {
+      id: newDevice.id,
+      name: newDevice.name,
+      type: newDevice.type,
+      status: "online",
+      lastUpdated: "Just now",
+      enabled: true,
+    }
+
+    setDevices((prev) => [...prev, device])
+    setNewDevice({ name: "", type: "temperature", id: "" })
+    setIsAddDeviceOpen(false)
+  }
+
+  const getDeviceIcon = (type: Device["type"]) => {
+    const Icon = deviceIcons[type]
+    return <Icon className="w-6 h-6" />
+  }
+
+  return (
+    <div className="flex flex-col h-full bg-gradient-to-br from-[#F5F5DC] to-[#FAF9F6]">
+      {/* Header */}
+      <div className="p-6 md:p-8 border-b border-[#3BB273]/20 bg-white/80 backdrop-blur-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+              Device Settings
+            </h1>
+            <p className="text-gray-600 text-sm md:text-base">
+              Manage your connected IoT devices and sensors
+            </p>
+          </div>
+          <Button
+            onClick={() => setIsAddDeviceOpen(true)}
+            className="bg-[#3BB273] hover:bg-[#3BB273]/90 text-white shadow-md hover:shadow-lg transition-all duration-200 rounded-lg px-6 py-2 flex items-center gap-2"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Add New Device</span>
+=======
       name: "Humidity Monitor",
       type: "humidity",
       status: "online",
@@ -115,11 +257,181 @@ export function DeviceSettings() {
           >
             <Plus className="w-5 h-5" />
             Add New Device
+>>>>>>> 8c2689b6c35d2c57687bea2943756f980c7c4044
           </Button>
         </div>
       </div>
 
       {/* Content */}
+<<<<<<< HEAD
+      <div className="flex-1 overflow-auto p-4 md:p-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {devices.map((device) => {
+            const isRefreshing = refreshingDevice === device.id
+
+            return (
+              <Card
+                key={device.id}
+                className="p-5 md:p-6 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-[1.02] group"
+              >
+                {/* Device Header */}
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-[#3BB273]/10 text-[#3BB273]">
+                      {getDeviceIcon(device.type)}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800 text-base md:text-lg">
+                        {device.name}
+                      </h3>
+                      <p className="text-xs text-gray-500">
+                        {deviceTypeLabels[device.type]}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Device Info */}
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Status:</span>
+                    <span
+                      className={`font-semibold ${
+                        device.status === "online"
+                          ? "text-[#3BB273]"
+                          : "text-gray-400"
+                      }`}
+                    >
+                      {device.status === "online" ? "● Online" : "○ Offline"}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Last Updated:</span>
+                    <span className="text-gray-800 font-medium">
+                      {device.lastUpdated}
+                    </span>
+                  </div>
+                  {device.location && (
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-600">Location:</span>
+                      <span className="text-gray-800 font-medium">
+                        {device.location}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-gray-600">Enable:</span>
+                    <Switch
+                      checked={device.enabled}
+                      onCheckedChange={() => handleToggleDevice(device.id)}
+                    />
+                  </div>
+                  <button
+                    onClick={() => handleRefreshDevice(device.id)}
+                    disabled={isRefreshing}
+                    className="p-2 rounded-lg bg-[#3BB273]/10 text-[#3BB273] hover:bg-[#3BB273]/20 transition-colors disabled:opacity-50"
+                    title="Refresh device data"
+                  >
+                    <RefreshCw
+                      className={`w-4 h-4 ${isRefreshing ? "animate-spin" : ""}`}
+                    />
+                  </button>
+                </div>
+              </Card>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="p-4 md:p-6 border-t border-[#3BB273]/20 bg-white/80 backdrop-blur-sm">
+        <p className="text-sm text-gray-600 text-center">
+          Ensure all devices are online for real-time data updates.
+        </p>
+      </div>
+
+      {/* Add Device Modal */}
+      <Dialog open={isAddDeviceOpen} onOpenChange={setIsAddDeviceOpen}>
+        <DialogContent className="bg-white rounded-xl border border-gray-200">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-gray-800">
+              Add New Device
+            </DialogTitle>
+            <DialogDescription className="text-gray-600">
+              Enter the details of your new IoT device or sensor.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Device Name
+              </label>
+              <Input
+                placeholder="e.g., Soil Moisture Sensor"
+                value={newDevice.name}
+                onChange={(e) =>
+                  setNewDevice({ ...newDevice, name: e.target.value })
+                }
+                className="border-gray-300 focus:border-[#3BB273] focus:ring-[#3BB273]"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Device Type
+              </label>
+              <select
+                value={newDevice.type}
+                onChange={(e) =>
+                  setNewDevice({
+                    ...newDevice,
+                    type: e.target.value as Device["type"],
+                  })
+                }
+                className="w-full h-9 rounded-md border border-gray-300 bg-transparent px-3 py-1 text-sm focus:border-[#3BB273] focus:ring-2 focus:ring-[#3BB273]/20 outline-none"
+              >
+                <option value="temperature">Temperature Sensor</option>
+                <option value="humidity">Humidity Sensor</option>
+                <option value="soil">Soil Moisture Sensor</option>
+                <option value="air">Air Quality Monitor</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Device ID
+              </label>
+              <Input
+                placeholder="e.g., DEV-001"
+                value={newDevice.id}
+                onChange={(e) =>
+                  setNewDevice({ ...newDevice, id: e.target.value })
+                }
+                className="border-gray-300 focus:border-[#3BB273] focus:ring-[#3BB273]"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsAddDeviceOpen(false)}
+              className="border-gray-300 text-gray-700 hover:bg-gray-50"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleAddDevice}
+              disabled={!newDevice.name || !newDevice.id}
+              className="bg-[#3BB273] hover:bg-[#3BB273]/90 text-white"
+            >
+              Add Device
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+=======
       <div className="flex-1 overflow-auto p-8 space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {devices.map((device, index) => (
@@ -272,6 +584,7 @@ export function DeviceSettings() {
           </Card>
         </div>
       )}
+>>>>>>> 8c2689b6c35d2c57687bea2943756f980c7c4044
     </div>
   )
 }
